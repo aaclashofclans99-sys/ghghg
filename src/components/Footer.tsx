@@ -1,4 +1,4 @@
-import { Twitter, Instagram } from 'lucide-react';
+import { Twitter, Instagram, Mail } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (section: string) => void;
@@ -24,6 +24,23 @@ export default function Footer({ onNavigate }: FooterProps) {
     { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
   ];
 
+  // Handle email click - This adds a fallback
+  const handleEmailClick = () => {
+    // Try to open mail client
+    window.location.href = 'mailto:contact@neptrex.com?subject=Inquiry from Neptrax Website';
+    
+    // If mailto doesn't work, show email address
+    setTimeout(() => {
+      const useFallback = window.confirm(
+        'Email client not detected. Would you like to copy the email address to clipboard?'
+      );
+      if (useFallback) {
+        navigator.clipboard.writeText('contact@neptrex.com');
+        alert('Email address copied to clipboard: contact@neptrex.com');
+      }
+    }, 1000);
+  };
+
   return (
     <footer className="bg-[#0d1117] border-t border-white/8 py-12">
       <div className="max-w-7xl mx-auto px-6">
@@ -40,13 +57,33 @@ export default function Footer({ onNavigate }: FooterProps) {
                 Neptrax
               </span>
             </button>
-            {/* Updated email link with mailto: */}
+            
+            {/* OPTION 1: Simple mailto link with proper email */}
             <a
               href="mailto:contact@neptrex.com"
-              className="flex justify-start text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
+              className="inline-flex items-center gap-2 text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
             >
+              <Mail size={14} />
               contact@neptrex.com
             </a>
+            
+            {/* OPTION 2: With pre-filled subject (uncomment if needed) */}
+            {/* <a
+              href="mailto:contact@neptrex.com?subject=Neptrax Inquiry&body=Hello, I'm reaching out from your website."
+              className="inline-flex items-center gap-2 text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
+            >
+              <Mail size={14} />
+              contact@neptrex.com
+            </a> */}
+            
+            {/* OPTION 3: Button with JavaScript fallback (uncomment if mailto doesn't work) */}
+            {/* <button
+              onClick={handleEmailClick}
+              className="inline-flex items-center gap-2 text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
+            >
+              <Mail size={14} />
+              contact@neptrex.com
+            </button> */}
           </div>
 
           <div>
@@ -102,6 +139,15 @@ export default function Footer({ onNavigate }: FooterProps) {
                   <social.icon size={18} />
                 </a>
               ))}
+              {/* Add email icon as social link too */}
+              <a
+                href="mailto:contact@neptrex.com"
+                className="w-10 h-10 rounded-full bg-[#1e293b] flex items-center justify-center text-[#94a3b8] hover:text-[#2563eb] hover:bg-[#1e3a8a] transition-all"
+                aria-label="Email"
+                title="Send email"
+              >
+                <Mail size={18} />
+              </a>
             </div>
             <a
               href="https://bark.com"
@@ -121,6 +167,16 @@ export default function Footer({ onNavigate }: FooterProps) {
         <div className="border-t border-white/8 pt-8 flex flex-col items-center justify-center text-center">
           <p className="text-[#94a3b8] text-sm">
             © 2025 Neptrax. All rights reserved.
+          </p>
+          {/* Add contact info at bottom too */}
+          <p className="text-[#64748b] text-xs mt-2">
+            Contact us at:{" "}
+            <a 
+              href="mailto:contact@neptrex.com"
+              className="text-[#94a3b8] hover:text-[#2563eb] transition-colors"
+            >
+              contact@neptrex.com
+            </a>
           </p>
         </div>
       </div>
