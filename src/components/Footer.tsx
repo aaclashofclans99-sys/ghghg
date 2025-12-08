@@ -27,7 +27,7 @@ export default function Footer({ onNavigate }: FooterProps) {
   // Handle email click - This adds a fallback
   const handleEmailClick = () => {
     // Try to open mail client
-    window.location.href = 'mailto:contact@neptrex.com?subject=Inquiry from Neptrax Website';
+    window.location.href = 'mailto:contact@neptrax.com?subject=Inquiry from Neptrax Website';
     
     // If mailto doesn't work, show email address
     setTimeout(() => {
@@ -35,8 +35,8 @@ export default function Footer({ onNavigate }: FooterProps) {
         'Email client not detected. Would you like to copy the email address to clipboard?'
       );
       if (useFallback) {
-        navigator.clipboard.writeText('contact@neptrex.com');
-        alert('Email address copied to clipboard: contact@neptrex.com');
+        navigator.clipboard.writeText('contact@neptrax.com');
+        alert('Email address copied to clipboard: contact@neptrax.com');
       }
     }, 1000);
   };
@@ -60,20 +60,20 @@ export default function Footer({ onNavigate }: FooterProps) {
             
             {/* OPTION 1: Simple mailto link with proper email */}
             <a
-              href="mailto:contact@neptrex.com"
+              href="mailto:contact@neptrax.com"
               className="inline-flex items-center gap-2 text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
             >
               <Mail size={14} />
-              contact@neptrex.com
+              contact@neptrax.com
             </a>
             
             {/* OPTION 2: With pre-filled subject (uncomment if needed) */}
             {/* <a
-              href="mailto:contact@neptrex.com?subject=Neptrax Inquiry&body=Hello, I'm reaching out from your website."
+              href="mailto:contact@neptrax.com?subject=Neptrax Inquiry&body=Hello, I'm reaching out from your website."
               className="inline-flex items-center gap-2 text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
             >
               <Mail size={14} />
-              contact@neptrex.com
+              contact@neptrax.com
             </a> */}
             
             {/* OPTION 3: Button with JavaScript fallback (uncomment if mailto doesn't work) */}
@@ -82,7 +82,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               className="inline-flex items-center gap-2 text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
             >
               <Mail size={14} />
-              contact@neptrex.com
+              contact@neptrax.com
             </button> */}
           </div>
 
