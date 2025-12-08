@@ -1,10 +1,13 @@
 import { Twitter, Instagram, Mail } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface FooterProps {
   onNavigate: (section: string) => void;
 }
 
 export default function Footer({ onNavigate }: FooterProps) {
+  const [isMobile, setIsMobile] = useState(false);
+  
   const quickLinks = [
     { id: 'home', label: 'Home' },
     { id: 'portfolio', label: 'Portfolio' },
@@ -24,22 +27,23 @@ export default function Footer({ onNavigate }: FooterProps) {
     { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
   ];
 
-  // Handle email click - This adds a fallback
-  const handleEmailClick = () => {
-    // Try to open mail client
-    window.location.href = 'mailto:contact@neptrax.com?subject=Inquiry from Neptrax Website';
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
     
-    // If mailto doesn't work, show email address
-    setTimeout(() => {
-      const useFallback = window.confirm(
-        'Email client not detected. Would you like to copy the email address to clipboard?'
-      );
-      if (useFallback) {
-        navigator.clipboard.writeText('contact@neptrax.com');
-        alert('Email address copied to clipboard: contact@neptrax.com');
-      }
-    }, 1000);
-  };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Desktop Gmail compose link (your link)
+  const desktopEmailLink = 'https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=DmwnWrRlQQFBJfMCSTkPGdknJRqzzCSXgWWTgQrWCbvvPNxZGjQXgDRwBpNllxtxNcZksdwwTVWl';
+  
+  // Mobile mailto link
+  const mobileEmailLink = 'mailto:contact@neptrax.com';
 
   return (
     <footer className="bg-[#0d1117] border-t border-white/8 py-12">
@@ -58,32 +62,39 @@ export default function Footer({ onNavigate }: FooterProps) {
               </span>
             </button>
             
-            {/* OPTION 1: Simple mailto link with proper email */}
-            <a
-              href="mailto:contact@neptrax.com"
-              className="inline-flex items-center gap-2 text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
-            >
-              <Mail size={14} />
-              contact@neptrax.com
-            </a>
-            
-            {/* OPTION 2: With pre-filled subject (uncomment if needed) */}
-            {/* <a
-              href="mailto:contact@neptrax.com?subject=Neptrax Inquiry&body=Hello, I'm reaching out from your website."
-              className="inline-flex items-center gap-2 text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
-            >
-              <Mail size={14} />
-              contact@neptrax.com
-            </a> */}
-            
-            {/* OPTION 3: Button with JavaScript fallback (uncomment if mailto doesn't work) */}
-            {/* <button
-              onClick={handleEmailClick}
-              className="inline-flex items-center gap-2 text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
-            >
-              <Mail size={14} />
-              contact@neptrax.com
-            </button> */}
+            {/* RESPONSIVE EMAIL LINKS */}
+            <div className="flex flex-col">
+              {/* Desktop: Gmail compose link */}
+              <a
+                href={desktopEmailLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden md:inline-flex items-center gap-2 text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
+              >
+                <Mail size={14} />
+                contact@neptrax.com
+              </a>
+              
+              {/* Mobile: mailto link */}
+              <a
+                href={mobileEmailLink}
+                className="inline-flex items-center gap-2 text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors md:hidden"
+              >
+                <Mail size={14} />
+                contact@neptrax.com
+              </a>
+              
+              {/* Alternative: Single link that adapts based on device */}
+              {/* <a
+                href={isMobile ? mobileEmailLink : desktopEmailLink}
+                target={isMobile ? undefined : "_blank"}
+                rel={isMobile ? undefined : "noopener noreferrer"}
+                className="inline-flex items-center gap-2 text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
+              >
+                <Mail size={14} />
+                contact@neptrax.com
+              </a> */}
+            </div>
           </div>
 
           <div>
@@ -139,9 +150,11 @@ export default function Footer({ onNavigate }: FooterProps) {
                   <social.icon size={18} />
                 </a>
               ))}
-              {/* Add email icon as social link too */}
+              {/* Email icon with responsive behavior */}
               <a
-                href="mailto:contact@neptrex.com"
+                href={isMobile ? mobileEmailLink : desktopEmailLink}
+                target={isMobile ? undefined : "_blank"}
+                rel={isMobile ? undefined : "noopener noreferrer"}
                 className="w-10 h-10 rounded-full bg-[#1e293b] flex items-center justify-center text-[#94a3b8] hover:text-[#2563eb] hover:bg-[#1e3a8a] transition-all"
                 aria-label="Email"
                 title="Send email"
@@ -168,14 +181,16 @@ export default function Footer({ onNavigate }: FooterProps) {
           <p className="text-[#94a3b8] text-sm">
             © 2025 Neptrax. All rights reserved.
           </p>
-          {/* Add contact info at bottom too */}
+          {/* Footer email with responsive links */}
           <p className="text-[#64748b] text-xs mt-2">
             Contact us at:{" "}
             <a 
-              href="mailto:contact@neptrex.com"
+              href={isMobile ? mobileEmailLink : desktopEmailLink}
+              target={isMobile ? undefined : "_blank"}
+              rel={isMobile ? undefined : "noopener noreferrer"}
               className="text-[#94a3b8] hover:text-[#2563eb] transition-colors"
             >
-              contact@neptrex.com
+              contact@neptrax.com
             </a>
           </p>
         </div>
