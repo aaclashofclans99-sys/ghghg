@@ -40,13 +40,12 @@ export default function Footer({ onNavigate }: FooterProps) {
                 Neptrax
               </span>
             </button>
+            {/* Updated email link with mailto: */}
             <a
-              href="https://gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:contact@neptrex.com"
               className="flex justify-start text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
             >
-              info@neptrex.com
+              contact@neptrex.com
             </a>
           </div>
 
@@ -90,7 +89,6 @@ export default function Footer({ onNavigate }: FooterProps) {
             <h3 className="text-xl font-bold text-[#f1f5f9] mb-3">
               Connect
             </h3>
-            {/* Icons in flex row */}
             <div className="flex gap-4 items-center mb-2">
               {socialLinks.map((social) => (
                 <a
@@ -105,19 +103,18 @@ export default function Footer({ onNavigate }: FooterProps) {
                 </a>
               ))}
             </div>
-{/* bark.com image on its own line */}
-<a
-  href="https://bark.com"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="block mt-2"
->
-  <img
-    src="/bark.png"
-    alt="bark.com"
-    className="h-10 w-22"
-  />
-</a>
+            <a
+              href="https://bark.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block mt-2"
+            >
+              <img
+                src="/bark.png"
+                alt="bark.com"
+                className="h-10 w-22"
+              />
+            </a>
           </div>
         </div>
 
