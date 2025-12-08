@@ -40,7 +40,7 @@ export default function Footer({ onNavigate }: FooterProps) {
   }, []);
 
   // Desktop Gmail compose link (your link)
-  const desktopEmailLink = 'https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=DmwnWrRlQQFBJfMCSTkPGdknJRqzzCSXgWWTgQrWCbvvPNxZGjQXgDRwBpNllxtxNcZksdwwTVWl';
+  const desktopEmailLink = 'https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJZfSSvhQRNnnPJjVQsPKDqVztldrdlTHJBSdPNflsPpjBChSHBnRvGZjsppDBcKkglxgNB';
   
   // Mobile mailto link
   const mobileEmailLink = 'mailto:contact@neptrax.com';
