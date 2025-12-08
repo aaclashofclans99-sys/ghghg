@@ -40,13 +40,23 @@ export default function Footer({ onNavigate }: FooterProps) {
                 Neptrax
               </span>
             </button>
+            
+            {/* Desktop email link (hidden on mobile) */}
             <a
               href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@neptrax.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex justify-start text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
+              className="hidden md:flex justify-start text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
             >
-              contact@neptrex.com
+              contact@neptrax.com
+            </a>
+            
+            {/* Mobile email link (hidden on desktop) */}
+            <a
+              href="mailto:contact@neptrax.com"
+              className="flex md:hidden justify-start text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
+            >
+              contact@neptrax.com
             </a>
           </div>
 
@@ -105,19 +115,19 @@ export default function Footer({ onNavigate }: FooterProps) {
                 </a>
               ))}
             </div>
-{/* bark.com image on its own line */}
-<a
-  href="https://bark.com"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="block mt-2"
->
-  <img
-    src="/bark.png"
-    alt="bark.com"
-    className="h-10 w-22"
-  />
-</a>
+            {/* bark.com image on its own line */}
+            <a
+              href="https://bark.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block mt-2"
+            >
+              <img
+                src="/bark.png"
+                alt="bark.com"
+                className="h-10 w-22"
+              />
+            </a>
           </div>
         </div>
 
