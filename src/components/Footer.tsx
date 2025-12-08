@@ -1,13 +1,10 @@
-import { Twitter, Instagram, Mail } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { Twitter, Instagram } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (section: string) => void;
 }
 
 export default function Footer({ onNavigate }: FooterProps) {
-  const [isMobile, setIsMobile] = useState(false);
-  
   const quickLinks = [
     { id: 'home', label: 'Home' },
     { id: 'portfolio', label: 'Portfolio' },
@@ -27,24 +24,6 @@ export default function Footer({ onNavigate }: FooterProps) {
     { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
   ];
 
-  // Check if device is mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  // Desktop: Gmail compose link
-  const desktopEmailLink = 'mailto:contact@neptrax.com';
-  
-  // Mobile: mailto link
-  const mobileEmailLink = 'mailto:contact@neptrax.com';
-
   return (
     <footer className="bg-[#0d1117] border-t border-white/8 py-12">
       <div className="max-w-7xl mx-auto px-6">
@@ -61,14 +40,13 @@ export default function Footer({ onNavigate }: FooterProps) {
                 Neptrax
               </span>
             </button>
-            {/* Updated email link with responsive behavior */}
             <a
-              href={isMobile ? mobileEmailLink : desktopEmailLink}
-              target={isMobile ? undefined : "_blank"}
-              rel={isMobile ? undefined : "noopener noreferrer"}
+              href="mailto:contact@neptrax.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex justify-start text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
             >
-              contact@neptrax.com
+              info@neptrex.com
             </a>
           </div>
 
@@ -112,6 +90,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             <h3 className="text-xl font-bold text-[#f1f5f9] mb-3">
               Connect
             </h3>
+            {/* Icons in flex row */}
             <div className="flex gap-4 items-center mb-2">
               {socialLinks.map((social) => (
                 <a
@@ -125,48 +104,26 @@ export default function Footer({ onNavigate }: FooterProps) {
                   <social.icon size={18} />
                 </a>
               ))}
-              {/* Email icon added to social links */}
-              <a
-                href={isMobile ? mobileEmailLink : desktopEmailLink}
-                target={isMobile ? undefined : "_blank"}
-                rel={isMobile ? undefined : "noopener noreferrer"}
-                className="w-10 h-10 rounded-full bg-[#1e293b] flex items-center justify-center text-[#94a3b8] hover:text-[#2563eb] hover:bg-[#1e3a8a] transition-all"
-                aria-label="Email"
-                title="Send email"
-              >
-                <Mail size={18} />
-              </a>
             </div>
-            <a
-              href="https://bark.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block mt-2"
-            >
-              <img
-                src="/bark.png"
-                alt="bark.com"
-                className="h-10 w-22"
-              />
-            </a>
+{/* bark.com image on its own line */}
+<a
+  href="https://bark.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="block mt-2"
+>
+  <img
+    src="/bark.png"
+    alt="bark.com"
+    className="h-10 w-22"
+  />
+</a>
           </div>
         </div>
 
         <div className="border-t border-white/8 pt-8 flex flex-col items-center justify-center text-center">
           <p className="text-[#94a3b8] text-sm">
             © 2025 Neptrax. All rights reserved.
-          </p>
-          {/* Optional: Add email in footer too */}
-          <p className="text-[#64748b] text-xs mt-2">
-            Contact:{" "}
-            <a 
-              href={isMobile ? mobileEmailLink : desktopEmailLink}
-              target={isMobile ? undefined : "_blank"}
-              rel={isMobile ? undefined : "noopener noreferrer"}
-              className="text-[#94a3b8] hover:text-[#2563eb] transition-colors"
-            >
-              contact@neptrax.com
-            </a>
           </p>
         </div>
       </div>
