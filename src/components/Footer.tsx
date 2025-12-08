@@ -39,10 +39,10 @@ export default function Footer({ onNavigate }: FooterProps) {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Desktop Gmail compose link (your link)
-  const desktopEmailLink = 'https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJZfSSvhQRNnnPJjVQsPKDqVztldrdlTHJBSdPNflsPpjBChSHBnRvGZjsppDBcKkglxgNB';
+  // Desktop: Gmail compose link
+  const desktopEmailLink = 'https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=DmwnWrRlQQFBJfMCSTkPGdknJRqzzCSXgWWTgQrWCbvvPNxZGjQXgDRwBpNllxtxNcZksdwwTVWl';
   
-  // Mobile mailto link
+  // Mobile: mailto link
   const mobileEmailLink = 'mailto:contact@neptrax.com';
 
   return (
@@ -61,40 +61,15 @@ export default function Footer({ onNavigate }: FooterProps) {
                 Neptrax
               </span>
             </button>
-            
-            {/* RESPONSIVE EMAIL LINKS */}
-            <div className="flex flex-col">
-              {/* Desktop: Gmail compose link */}
-              <a
-                href={desktopEmailLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden md:inline-flex items-center gap-2 text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
-              >
-                <Mail size={14} />
-                contact@neptrax.com
-              </a>
-              
-              {/* Mobile: mailto link */}
-              <a
-                href={mobileEmailLink}
-                className="inline-flex items-center gap-2 text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors md:hidden"
-              >
-                <Mail size={14} />
-                contact@neptrax.com
-              </a>
-              
-              {/* Alternative: Single link that adapts based on device */}
-              {/* <a
-                href={isMobile ? mobileEmailLink : desktopEmailLink}
-                target={isMobile ? undefined : "_blank"}
-                rel={isMobile ? undefined : "noopener noreferrer"}
-                className="inline-flex items-center gap-2 text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
-              >
-                <Mail size={14} />
-                contact@neptrax.com
-              </a> */}
-            </div>
+            {/* Updated email link with responsive behavior */}
+            <a
+              href={isMobile ? mobileEmailLink : desktopEmailLink}
+              target={isMobile ? undefined : "_blank"}
+              rel={isMobile ? undefined : "noopener noreferrer"}
+              className="flex justify-start text-[#94a3b8] hover:text-[#2563eb] text-sm transition-colors"
+            >
+              contact@neptrax.com
+            </a>
           </div>
 
           <div>
@@ -150,7 +125,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   <social.icon size={18} />
                 </a>
               ))}
-              {/* Email icon with responsive behavior */}
+              {/* Email icon added to social links */}
               <a
                 href={isMobile ? mobileEmailLink : desktopEmailLink}
                 target={isMobile ? undefined : "_blank"}
@@ -181,9 +156,9 @@ export default function Footer({ onNavigate }: FooterProps) {
           <p className="text-[#94a3b8] text-sm">
             © 2025 Neptrax. All rights reserved.
           </p>
-          {/* Footer email with responsive links */}
+          {/* Optional: Add email in footer too */}
           <p className="text-[#64748b] text-xs mt-2">
-            Contact us at:{" "}
+            Contact:{" "}
             <a 
               href={isMobile ? mobileEmailLink : desktopEmailLink}
               target={isMobile ? undefined : "_blank"}
