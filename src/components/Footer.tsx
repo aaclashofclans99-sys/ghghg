@@ -20,7 +20,7 @@ export default function Footer({ onNavigate }: FooterProps) {
   ];
 
   const socialLinks = [
-    { icon: Twitter, href: 'https://x.com', label: 'Twitter' },
+    { icon: Twitter, href: 'https://x.com/neptraxdigital', label: 'Twitter' },
     { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
   ];
 
