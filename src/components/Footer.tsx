@@ -115,6 +115,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                 </a>
               ))}
             </div>
+          </div>
 
         <div className="border-t border-white/8 pt-8 flex flex-col items-center justify-center text-center">
           <p className="text-[#94a3b8] text-sm">
